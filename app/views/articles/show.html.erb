@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Conduit</title>
+  <!-- Import Ionicon icons & Google Fonts our Bootstrap theme relies on -->
+  <link
+    href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <link
+    href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <!-- Import the custom Bootstrap 4 theme from our hosted CDN -->
+  <link rel="stylesheet" href="//demo.productionready.io/main.css" />
+</head>
+
+<body>
+<div class="article-page">
+  <div class="banner">
+    <div class="container">
+      <h1><%= @article.title %></h1>
+      <div class="article-meta">
+        <%= link_to 'Edit Article', edit_article_path(@article), class: 'btn btn-sm btn-outline-secondary' %>
+        <%= link_to 'Delete Article', article_path(@article), method: :delete, data: {"turbo-method": :delete, turbo_confirm: "You sure?"}, class: 'btn btn-sm btn-outline-danger' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container page">
+    <div class="row article-content">
+      <div class="col-md-12">
+        <p>
+          <%= @article.content %>
+        </p>
+        <ul class="tag-list">
+          <% @article.tags.split(',').each do |tag| %>  
+            <li class="tag-default tag-pill tag-outline"><%= tag.strip %></li> 
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <hr />
+  
+  </div>
+</div>
+
+</body>
+</html>
