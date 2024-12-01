@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   # 一覧ページ（home）
-  def home
+  def index
     @articles = Article.all
   end
 

@@ -1,24 +1,57 @@
-# README
+# Conduit
+## 概要
+Ruby on Railsの学習のために`https://realworld-docs.netlify.app/introduction/`を参考に作成したWebアプリです．記事のCRUD処理を実装しました．
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 使い方
+```bash
+# ローカルにコピーする
+git clone https://github.com/Megumin32/conduit
+# ディレクトリを移動する
+cd conduit
+# Railsサーバの起動
+rails server
+```
+ブラウザを起動して，`http://localhost:3000/`にアクセスする．
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+## 構成
+### モデル
+#### Articlesテーブル  
+- `title` : string
+- `description` : text
+- `content` : text
+- `tags` : string
 
-* Configuration
+マークダウン形式で入力されたcontentをHTMLに変換するメソッドを次のように定義した．
+```ruby
+def content_as_html
+    Kramdown::Document.new(content).to_html
+end
+```
 
-* Database creation
+### ルーター
+``` ruby
+Rails.application.routes.draw do
+  root 'articles#index' # GET: `/`　=> articleコントローラのindexアクションに対応
+  resources :articles #RESTfulな対応
+  get '/login', to: 'sessions#login' # GET: `/login` => sessionsコントローラのloginアクションに対応
+  get '/register', to: 'registrations#register' # GET: `/registrations` => registrationsコントローラのregisterアクションに対応
+end
+```
 
-* Database initialization
+### コントローラー
+- `articles_controller` => 記事のCRUD処理を担当
+  - アクション： `index` `show` `new` `create` `edit` `update` `destroy`
+- `registrations_controller` => サインアップを担当（現状ページ表示だけ）
+  - アクション： `register`
+- `sessions_controller` => ログインを担当（現状ページ表示だけ）
+  - アクション： `login`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### ビュー
+-  `index.html.erb` => `/` => ホームページ
+-  `new.html.erb` => `/articles/new` => 記事の新規作成ページ
+-  `show.html.erb` => `/articles/:id` => 記事の詳細ページ
+-  `edit.html.erb` => `/articles/:id/edit` => 記事の編集ページ
+-  `register.html.erb` => `/register` => サインアップページ（機能未実装）
+-  `login.html.erb` => `/login` => ログインページ（機能未実装）
