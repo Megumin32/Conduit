@@ -8,6 +8,8 @@ Ruby on Railsの学習のために`https://realworld-docs.netlify.app/introducti
 git clone https://github.com/Megumin32/conduit
 # ディレクトリを移動する
 cd conduit
+# データベースの準備（マイグレーション）
+rails db:migrate
 # Railsサーバの起動
 rails server
 ```
