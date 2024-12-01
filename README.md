@@ -1,8 +1,9 @@
 # Conduit
 ## 概要
-Ruby on Railsの学習のために`https://realworld-docs.netlify.app/introduction/`を参考に作成したWebアプリです．記事のCRUD処理を実装しました．
+Ruby on Railsの学習のために`https://realworld-docs.netlify.app/introduction/`を参考に作成したWebアプリ．記事のCRUD処理を実装した．
 
 ## 使い方
+- 初期設定
 ```bash
 # ローカルにコピーする
 git clone https://github.com/Megumin32/conduit
@@ -13,9 +14,14 @@ rails db:migrate
 # Railsサーバの起動
 rails server
 ```
-ブラウザを起動して，`http://localhost:3000/`にアクセスする．
-
-
+- ブラウザを起動して，`http://localhost:3000/`にアクセスする．
+- 記事の作成 
+  - `Create a new article` をクリック
+  - `content` はマークダウン記法で記述
+  - `tags` はカンマ区切りで入力
+- 記事の詳細表示・修正・削除が可能．
+- ログイン・サインアップはページ表示のみ．
+  
 
 ## 構成
 ### モデル
